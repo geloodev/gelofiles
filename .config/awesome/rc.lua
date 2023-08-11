@@ -7,10 +7,10 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
-local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
-local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
-local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
-local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+-- local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
+-- local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
+-- local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
+-- local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -56,7 +56,7 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "/home/geloodev/.local/kitty.app/bin/kitty"
+terminal = "kitty"
 editor = os.getenv("EDITOR") or "editor"
 editor_cmd = terminal .. " -e " .. editor
 
@@ -539,8 +539,8 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 -- Autostart Applications
 awful.spawn.with_shell("/home/geloodev/.config/polybar/launch.sh")
 awful.spawn.with_shell("picom")
-awful.spawn.with_shell("nm-applet")
+-- awful.spawn.with_shell("nm-applet")
 -- awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("feh --bg-fill ~/Pictures/Wallpapers/AnyConv.com__9fs4ti4srhf71.jpg")
-awful.spawn.with_shell("xrandr --output eDP-1 --output HDMI-1 --left-of eDP-1")
+awful.spawn.with_shell("feh --bg-fill ~/Pictures/wallpapers/catppuccin.png")
+-- awful.spawn.with_shell("xrandr --output eDP-1 --output HDMI-1 --left-of eDP-1")
 awful.spawn.with_shell("setxkbmap br")
