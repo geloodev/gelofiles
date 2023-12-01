@@ -1,6 +1,6 @@
----------------------------
--- Default awesome theme --
----------------------------
+---------------------------------
+-- geloodev's cattppucin theme --
+---------------------------------
 
 local theme_assets = require("beautiful.theme_assets")
 local xresources = require("beautiful.xresources")
@@ -9,11 +9,13 @@ local dpi = xresources.apply_dpi
 local gfs = require("gears.filesystem")
 local themes_path = gfs.get_themes_dir()
 
+local gears = require("gears")
+
 local theme = {}
 
-theme.font = "Cascadia Code 8"
+theme.font = "JetBrainsMono Nerd Font 11"
 
-theme.bg_normal   = "#222222"
+theme.bg_normal   = "#181926"
 theme.bg_focus    = "#535d6c"
 theme.bg_urgent   = "#ff0000"
 theme.bg_minimize = "#444444"
@@ -21,14 +23,59 @@ theme.bg_systray  = theme.bg_normal
 
 theme.fg_normal   = "#aaaaaa"
 theme.fg_focus    = "#ff79c6"
-theme.fg_urgent   = "#ffffff"
-theme.fg_minimize = "#ffffff"
+theme.fg_urgent   = "#A54242"
+theme.fg_minimize = "#707880"
 
-theme.useless_gap   = dpi(10)
-theme.border_width  = dpi(1.5)
+theme.useless_gap   = dpi(8)
+theme.border_width  = dpi(3)
 theme.border_normal = "#282a36"
 theme.border_focus  = "#ca9ee6"
 theme.border_marked = "#91231c"
+
+theme.base = "#24273a"
+theme.mantle = "#1e2030"
+theme.crust = "#181926"
+
+theme.text = "#cad3f5"
+theme.subtext0 = "#a5adcb"
+theme.subtext1 = "#b8c0e0"
+
+theme.surface0 = "#363a4f"
+theme.surface1 = "#494d64"
+theme.surface2 = "#5b6078"
+
+theme.overlay0 = "#6e738d"
+theme.overlay1 = "#8087a2"
+theme.overlay2 = "#939ab7"
+
+theme.blue = "#8aadf4"
+theme.lavender = "#b7bdf8"
+theme.sapphire = "#7dc4e4"
+theme.sky = "#91d7e3"
+theme.teal = "#8bd5ca"
+theme.green = "#a6da95"
+theme.yellow = "#eed49f"
+theme.peach = "#f5a97f"
+theme.maroon = "#ee99a0"
+theme.red = "#ed8796"
+theme.mauve = "#c6a0f6"
+theme.pink = "#f5bde6"
+theme.flamingo = "#f0c6c6"
+theme.rosewater = "#f4dbd6"
+
+theme.trans = "#00000000"
+theme.semi_trans_black = "#aa000000"
+
+theme.wibar_bg = theme.trans;
+
+theme.taglist_bg_focus = theme.trans;
+theme.taglist_fg_focus = theme.mauve;
+theme.taglist_fg_occupied = theme.text;
+theme.taglist_fg_urgent = theme.fg_urgent;
+theme.taglist_fg_empty = theme.fg_minimize;
+theme.taglist_spacing = 5;
+-- theme.taglist_shape_focus = gears.shape.rectangle(cr, 10, 10);
+theme.taglist_shape_border_color_focus = theme.mauve;
 
 -- There are other variable sets
 -- overriding the default one when
@@ -44,6 +91,7 @@ theme.border_marked = "#91231c"
 --theme.taglist_bg_focus = "#ff0000"
 
 -- Generate taglist squares:
+--[[
 local taglist_square_size = dpi(4)
 theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
     taglist_square_size, theme.fg_normal
@@ -51,6 +99,7 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(
     taglist_square_size, theme.fg_normal
 )
+--]]
 
 -- Variables set for theming notifications:
 -- notification_font

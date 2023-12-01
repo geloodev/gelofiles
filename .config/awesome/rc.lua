@@ -7,10 +7,6 @@ local awful = require("awful")
 require("awful.autofocus")
 -- Widget and layout library
 local wibox = require("wibox")
--- local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
--- local batteryarc_widget = require("awesome-wm-widgets.batteryarc-widget.batteryarc")
--- local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
--- local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 -- Theme handling library
 local beautiful = require("beautiful")
 -- Notification library
@@ -56,21 +52,21 @@ end
 beautiful.init(gears.filesystem.get_configuration_dir() .. "theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "kitty"
-editor = os.getenv("EDITOR") or "editor"
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "kitty"
+local editor = os.getenv("EDITOR") or "editor"
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
 -- Usually, Mod4 is the key with a logo between Control and Alt.
 -- If you do not like this or do not have such a key,
 -- I suggest you to remap Mod4 to another key using xmodmap or other tools.
 -- However, you can use another modifier like Mod1, but it may interact with others.
-modkey = "Mod4"
+local modkey = "Mod4"
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
   awful.layout.suit.tile,
-  awful.layout.suit.floating,
+  -- awful.layout.suit.floating,
   -- awful.layout.suit.tile.left,
   -- awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
@@ -90,7 +86,7 @@ awful.layout.layouts = {
 
 -- {{{ Menu
 -- Create a launcher widget and a main menu
-myawesomemenu = {
+local myawesomemenu = {
   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
   { "manual", terminal .. " -e man awesome" },
   { "edit config", editor_cmd .. " " .. awesome.conffile },
@@ -102,7 +98,7 @@ local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 local menu_terminal = { "open terminal", terminal }
 
 if has_fdo then
-  mymainmenu = freedesktop.menu.build({
+  local mymainmenu = freedesktop.menu.build({
     before = { menu_awesome },
     after = { menu_terminal }
   })
@@ -111,6 +107,29 @@ end
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}
+
+-- {{{ Wibar
+
+local mytextclock_date = wibox.widget.textclock('%a, %b %d')
+local mytextclock_time = wibox.widget.textclock('%H:%M')
+
+-- Create a wibox for each screen and add it
+local taglist_buttons = gears.table.join(
+  awful.button({ }, 1, function(t) t:view_only() end),
+  awful.button({ modkey }, 1, function(t)
+    if client.focus then
+      client.focus:move_to_tag(t)
+    end
+  end),
+  awful.button({ }, 3, awful.tag.viewtoggle),
+  awful.button({ modkey }, 3, function(t)
+    if client.focus then
+      client.focus:toggle_tag(t)
+    end
+  end),
+  awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+  awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+)
 
 local function set_wallpaper(s)
   -- Wallpaper
@@ -129,56 +148,59 @@ screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
   -- Wallpaper
-  set_wallpaper(s)
+  -- set_wallpaper(s)
 
   -- Tags
-  --    awful.tag({ "1", "2", "3", "4", "5" }, s, awful.layout.layouts[1])
+  awful.tag({ "", "", "", "", "" }, s, awful.layout.layouts[1])
 
-  awful.tag.add("1", {
-    --icon               = "/path/to/icon1.png",
-    layout            = awful.layout.suit.tile,
-    --master_fill_policy = "master_width_factor",
-    gap_single_client = true,
-    gap               = 5,
-    screen            = s,
-    selected          = true,
+  s.mylayoutbox = awful.widget.layoutbox(s)
+
+  s.mylayoutbox:buttons(gears.table.join(
+    awful.button({ }, 1, function() awful.layout.inc(1) end),
+    awful.button({ }, 3, function() awful.layout.inc(-1) end),
+    awful.button({ }, 4, function() awful.layout.inc(1) end),
+    awful.button({ }, 5, function() awful.layout.inc(-1) end)
+  ))
+
+  s.mytaglist = awful.widget.taglist {
+    screen = s,
+    filter = awful.widget.taglist.filter.all,
+    buttons = taglist_buttons
+  }
+
+  --[[
+  -- Create the wibox
+  s.mywibox = awful.wibar({
+    position = "top",
+    screen = s,
+    height = 35
   })
-  awful.tag.add("2", {
-    --icon               = "/path/to/icon1.png",
-    layout            = awful.layout.suit.tile,
-    --master_fill_policy = "master_width_factor",
-    gap_single_client = true,
-    gap               = 5,
-    screen            = s,
-    selected          = false,
-  })
-  awful.tag.add("3", {
-    --icon               = "/path/to/icon1.png",
-    layout            = awful.layout.suit.tile,
-    --master_fill_policy = "master_width_factor",
-    gap_single_client = true,
-    gap               = 5,
-    screen            = s,
-    selected          = false,
-  })
-  awful.tag.add("4", {
-    --icon               = "/path/to/icon1.png",
-    layout            = awful.layout.suit.tile,
-    --master_fill_policy = "master_width_factor",
-    gap_single_client = true,
-    gap               = 5,
-    screen            = s,
-    selected          = false,
-  })
-  awful.tag.add("5", {
-    --icon               = "/path/to/icon1.png",
-    layout            = awful.layout.suit.tile,
-    --master_fill_policy = "master_width_factor",
-    gap_single_client = true,
-    gap               = 5,
-    screen            = s,
-    selected          = false,
-  })
+
+  -- Add widgets to the wibox
+  s.mywibox:setup {
+    
+    layout = wibox.layout.align.horizontal,
+    --expand = "outside",
+    -- left widgets:
+    {
+      layout = wibox.layout.fixed.horizontal,
+      s.mytaglist
+    },
+    -- middle widgets:
+    {
+      layout = wibox.layout.fixed.horizontal,
+      mytextclock_date,
+      mytextclock_time
+    },
+    -- right widgets:
+    {
+      layout = wibox.layout.fixed.horizontal,
+      s.mylayoutbox
+    }
+  }
+
+  --]]
+
 end)
 -- }}}
 
@@ -191,7 +213,7 @@ root.buttons(gears.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = gears.table.join(
+local globalkeys = gears.table.join(
   awful.key({ modkey, }, "s", hotkeys_popup.show_help,
     { description = "show help", group = "awesome" }),
   awful.key({ modkey, }, "Left", awful.tag.viewprev,
@@ -244,7 +266,7 @@ globalkeys = gears.table.join(
   awful.key({ modkey, "Shift" }, "q", awesome.quit,
     { description = "quit awesome", group = "awesome" }),
 
-  awful.key({ modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
+  awful.key({ modkey, }, "ç", function() awful.tag.incmwfact(0.05) end,
     { description = "increase master width factor", group = "layout" }),
   awful.key({ modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
     { description = "decrease master width factor", group = "layout" }),
@@ -256,8 +278,8 @@ globalkeys = gears.table.join(
     { description = "increase the number of columns", group = "layout" }),
   awful.key({ modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
     { description = "decrease the number of columns", group = "layout" }),
-  awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
-    { description = "select next", group = "layout" }),
+  -- awful.key({ modkey, }, "space", function() awful.layout.inc(1) end,
+  --   { description = "select next", group = "layout" }),
   awful.key({ modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
     { description = "select previous", group = "layout" }),
 
@@ -283,7 +305,7 @@ globalkeys = gears.table.join(
   awful.key({ modkey }, "r", function()
     awful.util.spawn("rofi -show drun")
   end,
-    { description = "run rofi", group = "launcher" }),
+    { description = "run rofi", group = "applications" }),
 
   --Thunar
   awful.key({ modkey }, "e", function()
@@ -297,12 +319,14 @@ globalkeys = gears.table.join(
   end,
     { description = "take a screenshot with flameshot", group = "applications" }),
 
+  -- Keyboard Language Switch
+
   -- Menubar
   awful.key({ modkey }, "p", function() menubar.show() end,
     { description = "show the menubar", group = "launcher" })
 )
 
-clientkeys = gears.table.join(
+local clientkeys = gears.table.join(
   awful.key({ modkey, }, "f",
     function(c)
       c.fullscreen = not c.fullscreen
@@ -396,7 +420,7 @@ for i = 1, 9 do
   )
 end
 
-clientbuttons = gears.table.join(
+local clientbuttons = gears.table.join(
   awful.button({}, 1, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
   end),
@@ -541,6 +565,7 @@ awful.spawn.with_shell("/home/geloodev/.config/polybar/launch.sh")
 awful.spawn.with_shell("picom")
 -- awful.spawn.with_shell("nm-applet")
 -- awful.spawn.with_shell("nitrogen --restore")
-awful.spawn.with_shell("feh --bg-fill ~/Pictures/wallpapers/catppuccin.png")
+awful.spawn.with_shell("feh --bg-fill ~/dotfiles/wallpapers/anime-girl-police-car-3d-videogame-model.png")
 -- awful.spawn.with_shell("xrandr --output eDP-1 --output HDMI-1 --left-of eDP-1")
+-- awful.spawn.with_shell("xrandr --output Virtual1 --output Virtual2 --left-of Virtual1")
 awful.spawn.with_shell("setxkbmap br")
