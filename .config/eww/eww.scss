@@ -1,0 +1,79 @@
+* {
+    all: unset;
+}
+
+window {
+    background-color: transparent;
+}
+
+.bar {
+	font-family: "Sarasa Term K";
+    color: #cad3f5;
+    //font-weight: bold;
+}
+
+.box {
+    border-width: 1px;
+    margin: 2px 15px;
+    padding: 1px 10px;
+    border-style: solid;
+    border-radius: 10px;
+    background-color: #24273a;
+}
+
+button {
+    background-color: transparent;
+    border-width: 0px;
+    border-radius: 0px;
+    margin: 0px;
+    :hover {
+        background-color: #4c566a;
+        border-radius: 10px;
+        transition-duration: 0.5s;
+    }
+}
+
+.icon {
+    font-family: "Phosphor-Fill";
+    font-size: 16px;
+}
+
+.volume-icon {
+    color: #8aadf4;
+    transition-duration: 0.5s;
+    :hover {
+        transition-duration: 0.5s;
+    }
+}
+
+.battery-icon {
+    color: #f5a97f;
+}
+
+.power-icon {
+    font-size: 18px;
+}
+
+.number {
+    background-color: #1b1d2b;
+    border-radius: 5px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    padding: 0px 5px;
+}
+
+scale > contents > trough > highlight {
+    all: unset;
+    background-color: #c099ff;
+}
+
+scale > contents > trough > slider {
+    background-color: transparent;
+    box-shadow: unset;
+}
+
+.power {
+    font-family: Phosphor-Bold;
+    font-size: 18px;
+    color: #c53b53;
+}
