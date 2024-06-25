@@ -2,7 +2,8 @@ return {
     -- { "eruizc-dev/jdtls-launcher" },
     { "mfussenegger/nvim-jdtls" },
     { "elkowar/yuck.vim" },
-
+    { "rebelot/kanagawa.nvim" },
+    { "imsnif/kdl.vim" },
     {
         "christoomey/vim-tmux-navigator",
         cmd = {
