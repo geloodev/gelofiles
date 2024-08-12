@@ -34,3 +34,4 @@ alias ls="eza -l -a --icons --group-directories-first"
 alias bat="bat --style=auto"
 
 eval "$(starship init zsh)"
+eval "$(mise activate zsh)"
