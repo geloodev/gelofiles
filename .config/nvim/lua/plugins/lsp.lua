@@ -7,9 +7,10 @@ return {
                 "luacheck",
                 "shellcheck",
                 "shfmt",
-                "tailwindcss-language-server",
+                --"tailwindcss-language-server",
                 "typescript-language-server",
                 "css-lsp",
+                "texlab",
             })
         end,
     },
@@ -21,11 +22,13 @@ return {
             ---@type lspconfig.options,
             servers = {
                 cssls = {},
+                --[[
                 tailwindcss = {
                     root_dir = function(...)
                         return require("lspconfig.util").root_pattern(".git")(...)
                     end,
                 },
+                --]]
                 tsserver = {
                     root_dir = function(...)
                         return require("lspconfig.util").root_pattern(".git")(...)
@@ -34,24 +37,24 @@ return {
                     settings = {
                         typescript = {
                             inlayHints = {
-								includeInlayParameterNameHints = "literal",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = false,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
+                                includeInlayParameterNameHints = "literal",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = true,
+                                includeInlayVariableTypeHints = false,
+                                includeInlayPropertyDeclarationTypeHints = true,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = true,
                             },
                         },
                         javascript = {
                             inlayHints = {
-								includeInlayParameterNameHints = "literal",
-								includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-								includeInlayFunctionParameterTypeHints = true,
-								includeInlayVariableTypeHints = false,
-								includeInlayPropertyDeclarationTypeHints = true,
-								includeInlayFunctionLikeReturnTypeHints = true,
-								includeInlayEnumMemberValueHints = true,
+                                includeInlayParameterNameHints = "literal",
+                                includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+                                includeInlayFunctionParameterTypeHints = true,
+                                includeInlayVariableTypeHints = false,
+                                includeInlayPropertyDeclarationTypeHints = true,
+                                includeInlayFunctionLikeReturnTypeHints = true,
+                                includeInlayEnumMemberValueHints = true,
                             },
                         },
                     },
@@ -122,6 +125,34 @@ return {
                         },
                     },
                 },
+                texlab = {
+                    root_dir = function(...)
+                        return require("lspconfig.util").root_pattern(
+                            ".latexmkrc",
+                            "latexmkrc",
+                            "texmf.cnf",
+                            "main.tex"
+                        )(...)
+                    end,
+                    settings = {
+                        texlab = {
+                            build = {
+                                executable = "pdflatex",
+                                args = { "-pdf", "-interaction=nonstopmode", "-synctex=1", "%f" },
+                                onSave = true,
+                            },
+                            forwardSearch = {
+                                executable = "zathura",
+                                args = { "--synctex-forward", "%l:1:%f", "%p" },
+                            },
+                            latex = {
+                                lint = {
+                                    checkEnabled = true,
+                                },
+                            },
+                        },
+                    },
+                },
             },
             setup = {},
         },
@@ -133,5 +164,5 @@ return {
         opts = function(_, opts)
             table.insert(opts.sources, { name = "emoji" })
         end,
-    }
+    },
 }
