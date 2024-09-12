@@ -1,0 +1,68 @@
+@import url("variables.css");
+
+panelview,
+.panel-arrowcontent {
+	background: var(--background) !important;
+	color: var(--foreground) !important;
+}
+
+#titlebar:-moz-window-inactive {
+	opacity: unset !important;
+}
+
+#TabsToolbar {
+	background-color: var(--background) !important;
+}
+
+#urlbar {
+	font-size: 12px !important;
+	color: var(--foreground) !important;
+}
+
+#urlbar-background {	
+	background-color: var(--background) !important;
+}
+
+#nav-bar {
+	background-color: var(--background) !important;
+}
+
+#PersonalToolbar {
+	background-color: var(--background) !important;
+	color: var(--foreground) !important;
+}
+
+#sidebar-box {
+    background-color: #1e1e1e !important; /* Replace with your desired color */
+}
+
+#alltabs-button,
+#save-to-pocket-button,
+#fxa-toolbar-menu-button {
+	display: none;
+}
+
+#navigator-toolbox {
+	border: none !important;
+}
+
+#browser {
+	background-color: var(--background) !important;
+}
+
+.browserContainer {
+	background-color: var(--background) !important;
+}
+
+.tabbrowser-tab {
+  background-color: var(--background) !important;
+	color: var(--foreground) !important;
+}
+
+.tabbrowser-tab[selected="true"] {
+	border-bottom: 2px solid var(--green) !important;
+}
+
+.tab-background {
+  background-color: var(--background) !important;
+}
