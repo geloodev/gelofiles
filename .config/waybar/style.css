@@ -1,0 +1,83 @@
+* {
+    border: none;
+    font-family: 'JetBrains Mono Nerd Font', 'Iosevka';
+    font-size: 14px;
+    font-weight: bold;
+}
+
+window {
+    color: #dcd7ba;
+}
+
+window#waybar {
+    background: transparent;
+}
+
+tooltip {
+    color: #DCD7BA;
+    background: #1F1F28;
+    text-shadow: none;
+    border-radius: 6px;
+}
+
+#workspaces,
+#clock,
+#pulseaudio,
+#backlight,
+#keyboard-state,
+#language,
+#network {
+    margin: 4px 4px 0px;
+    padding: 2px 12px;
+    border-radius: 2px;
+    transition: none;
+    background: #1f1f28;
+}
+
+#workspaces {
+    border-bottom: 4px solid #957FB8;
+    transition: 0.2s ease;
+}
+
+#workspaces button {
+    box-shadow: none;
+    text-shadow: none;
+    transition: 0.2s ease;
+    padding: 2px 6px;
+}
+
+#workspaces button:hover {
+    background: none;
+    color: #957FB8;
+    animation: ws_hover 20s ease-in-out 1;
+    transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.682);
+}
+
+#workspaces button.active {
+    color: #957FB8;
+    transition: all 0.3s ease;
+}
+
+#workspaces button.urgent {
+    color: #C34043;
+}
+
+#clock {
+    border-bottom: 4px solid #76946A;
+}
+
+#pulseaudio {
+    border-bottom: 4px solid #C0A36E;
+}
+
+#backlight {
+    border-bottom: 4px solid #7E9CD8;
+}
+
+#language {
+    border-bottom: 4px solid #6A9589;
+}
+
+#network {
+    border-bottom: 4px solid #C8C093;
+}

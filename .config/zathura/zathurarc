@@ -1,0 +1,39 @@
+# Vim-like navigation
+map <key> k scroll up
+map <key> j scroll down
+map <key> h scroll left
+map <key> l scroll right
+
+# Half-page movements (like Ctrl+d/u in Vim)
+map <key> d scroll down 50%
+map <key> u scroll up 50%
+
+# Full-page movements (like Ctrl+f/b in Vim)
+map <key> f scroll down full
+map <key> b scroll up full
+
+# Zoom in and out with + and -
+map <key> + zoom in
+map <key> - zoom out
+
+# Fit the document to width (like 'zM' in Vim)
+map <key> w set zoom best-fit
+
+# Fit the document to height (like 'zH' in Vim)
+map <key> h set zoom fit-height
+
+# Search (like '/' in Vim)
+map <key> / search
+map <key> n search-next
+map <key> N search-prev
+
+# Quit (like :q in Vim)
+map <key> :q quit
+
+# Jump to beginning and end of document (gg and G)
+map <key> g scroll to top
+map <key> G scroll to bottom
+
+# Toggle fullscreen
+map <key> F fullscreen
+

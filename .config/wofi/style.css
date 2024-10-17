@@ -1,0 +1,39 @@
+* {
+    box-shadow: none;
+}
+
+window {
+    margin: 0px;
+    border: 3px solid #DCD7BA;
+    background: #1F1F28;
+    width: 600px;
+    border-radius: 2px;
+    font-family: Iosevka;
+    font-size: 14px;
+    color: white;
+    color: #DCD7BA;
+}
+
+#input {
+    color: #DCD7BA;
+    background: #1F1F28;
+    border: none;
+    margin: 4px;
+}
+
+#input:selected {
+    border: none;
+}
+
+#entry {
+    margin: 0px 4px;
+}
+
+#entry:selected {
+    background: #957FB8;
+    font-weight: bold;
+}
+
+#img {
+    margin-right: 8px;
+}

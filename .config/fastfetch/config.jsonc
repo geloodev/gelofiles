@@ -6,7 +6,7 @@
         "source": "~/dotfiles/.config/fastfetch/images/eunchae.png",
         "width": 25,
         "padding": {
-            "top": 1,
+            "top": 0,
             "right": 0
         }
     },

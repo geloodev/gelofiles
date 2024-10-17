@@ -20,18 +20,24 @@ zstyle :compinstall filename '/home/geloodev/.zshrc'
 # End of lines added by compinstall
 #source /share/powerlevel10k/powerlevel10k.zsh-theme
 #source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
-#source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 # [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 #. /opt/asdf-vm/asdf.sh
 
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_TIME=pt_BR.UTF-8
+
 export PATH=/home/geloodev/.local/bin:/home/geloodev/.cargo/bin:$PATH
+export STARSHIP_CONFIG=~/.config/starship/starship.toml
 #export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/share/lombok-nightly/lombok.jar"
 
 alias ls="eza -l -a --icons --group-directories-first"
 alias bat="bat --style=auto"
+alias clear="clear && fastfetch"
 
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
