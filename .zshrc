@@ -33,6 +33,7 @@ export LC_TIME=pt_BR.UTF-8
 
 export PATH=/home/geloodev/.local/bin:/home/geloodev/.cargo/bin:$PATH
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
+export XDG_CONFIG_HOME=$HOME/.config
 #export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/share/lombok-nightly/lombok.jar"
 
 alias ls="eza -l -a --icons --group-directories-first"

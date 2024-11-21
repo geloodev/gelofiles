@@ -19,7 +19,7 @@ return {
         keys = {
             {
                 ";f",
-                function ()
+                function()
                     local builtin = require("telescope.builtin")
                     builtin.find_files({
                         no_ignore = false,
@@ -30,7 +30,7 @@ return {
             },
             {
                 ";r",
-                function ()
+                function()
                     local builtin = require("telescope.builtin")
                     builtin.live_grep()
                 end,
@@ -38,7 +38,7 @@ return {
             },
             {
                 "\\\\",
-                function ()
+                function()
                     local builtin = require("telescope.builtin")
                     builtin.buffers()
                 end,
@@ -46,7 +46,7 @@ return {
             },
             {
                 ";;",
-                function ()
+                function()
                     local builtin = require("telescope.builtin")
                     builtin.resume()
                 end,
@@ -54,7 +54,7 @@ return {
             },
             {
                 ";e",
-                function ()
+                function()
                     local builtin = require("telescope.builtin")
                     builtin.diagnostics()
                 end,
@@ -62,7 +62,7 @@ return {
             },
             {
                 ";s",
-                function ()
+                function()
                     local builtin = require("telescope.builtin")
                     builtin.treesitter()
                 end,
@@ -70,10 +70,10 @@ return {
             },
             {
                 "sf",
-                function ()
+                function()
                     local telescope = require("telescope")
 
-                    local function telescope_buffer_dir ()
+                    local function telescope_buffer_dir()
                         return vim.fn.expand("%:p:h")
                     end
 
@@ -91,7 +91,7 @@ return {
                 desc = "Open File Browser with the path of the current buffer",
             },
         },
-        config = function (_, opts)
+        config = function(_, opts)
             local telescope = require("telescope")
             local actions = require("telescope.actions")
             local fb_actions = require("telescope").extensions.file_browser.actions
@@ -105,7 +105,7 @@ return {
                 mappings = {
                     n = {},
                 },
-            }) 
+            })
 
             opts.pickers = {
                 diagnostics = {
@@ -128,24 +128,32 @@ return {
                             --your custom normal mode mappings
                             ["N"] = fb_actions.create,
                             ["h"] = fb_actions.goto_parent_dir,
-                            ["<C-u>"] = function (prompt_bufnr)
+                            ["<C-u>"] = function(prompt_bufnr)
                                 for i = 1, 10 do
                                     actions.move_selection_previous(prompt_bufnr)
                                 end
                             end,
-                            ["<C-d>"] = function (prompt_bufnr)
+                            ["<C-d>"] = function(prompt_bufnr)
                                 for i = 1, 10 do
                                     actions.move_selection_next(prompt_bufnr)
                                 end
                             end,
-                        }
-                    }
-                }
+                        },
+                    },
+                },
             }
 
             telescope.setup(opts)
             require("telescope").load_extension("fzf")
             require("telescope").load_extension("file_browser")
-        end
-    }
+        end,
+    },
+    -- VIMTEX
+    {
+        "lervag/vimtex",
+        lazy = false,
+        init = function()
+            vim.g.vimtex_view_method = "zathura"
+        end,
+    },
 }

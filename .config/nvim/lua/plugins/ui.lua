@@ -5,10 +5,11 @@ return {
     },
     -- LUALINE
     {
-        'nvim-lualine/lualine.nvim',
-        dependencies = { 'nvim-tree/nvim-web-devicons' }
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
     },
     -- messages, cmdline and the popupmenu
+    --[[
     {
         "folke/noice.nvim",
         opts = function (_, opts)
@@ -54,13 +55,14 @@ return {
             opts.presets.lsp_doc_border = true
         end
     },
+    --]]
     {
         "rcarriga/nvim-notify",
         opts = {
             timeout = 5000,
             background_colour = "#000000",
             render = "wrapped-compact",
-        }
+        },
     },
     --[[
     {
@@ -89,19 +91,19 @@ return {
                 noremap = true,
             },
         },
-         -- optional for floating window border decoration
+        -- optional for floating window border decoration
         dependencies = {
             "nvim-lua/plenary.nvim",
         },
     },
     {
         "nvim-tree/nvim-tree.lua",
-        config = function ()
+        config = function()
             require("nvim-tree").setup({
-                on_attach = function (bufnr)
+                on_attach = function(bufnr)
                     local api = require("nvim-tree.api")
 
-                    local function opts (desc)
+                    local function opts(desc)
                         return {
                             desc = "nvim-tree: " .. desc,
                             buffer = bufnr,
@@ -120,7 +122,7 @@ return {
                 actions = {
                     open_file = {
                         quit_on_open = true,
-                    }
+                    },
                 },
                 sort = {
                     sorter = "case_sensitive",
@@ -153,7 +155,7 @@ return {
             if vim.fn.argc(-1) == 0 then
                 vim.cmd("NvimTreeFocus")
             end
-        end
+        end,
     },
     {
         "kristijanhusak/vim-dadbod-ui",
@@ -167,7 +169,7 @@ return {
             "DBUIAddConnection",
             "DBUIFindBuffer",
         },
-        init = function ()
+        init = function()
             -- your DBUI configuration
             vim.g.db_ui_use_nerd_fonts = 1
         end,
@@ -175,7 +177,7 @@ return {
             {
                 "<Leader>d",
                 "<cmd>NvimTreeClose<cr><cmd>tabnew<cr><bar><bar><cmd>DBUI<cr>",
-            }
-        }
-    }
+            },
+        },
+    },
 }
