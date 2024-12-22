@@ -2,9 +2,12 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 30,
+    // "height": 30,
     // "width": 1280, // Waybar width
-    "spacing": 4,
+    // "spacing": 8,
+    "margin-top": 4,
+    "margin-left": 4,
+    "margin-right": 4,
     "modules-left": [
         "hyprland/workspaces",
         "hyprland/submap",
@@ -103,10 +106,10 @@
         "format": " {:%Hh%M  󰃭 %A %d/%m/%Y}",
         "calendar": {
             "format": {
-                "months": "<span font-family='JetBrains Mono Nerd Font' color='#76946A'><b>{}</b></span>",
-                "days": "<span font-family='JetBrains Mono Nerd Font' color='#DCD7BA'><b>{}</b></span>",
-                "weekdays": "<span font-family='JetBrains Mono Nerd Font' color='#C0A36E'><b>{}</b></span>",
-                "today": "<span font-family='JetBrains Mono Nerd Font' color='#957FB8'><b>{}</b></span>"
+                "months": "<span font-family='Iosevka' color='#76946A'><b>{}</b></span>",
+                "days": "<span font-family='Iosevka' color='#DCD7BA'><b>{}</b></span>",
+                "weekdays": "<span font-family='Iosevka' color='#C0A36E'><b>{}</b></span>",
+                "today": "<span font-family='Iosevka' color='#957FB8'><b>{}</b></span>"
             }
         }
     },

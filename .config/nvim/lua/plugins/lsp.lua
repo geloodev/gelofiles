@@ -4,6 +4,8 @@ return {
         "williamboman/mason.nvim",
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, {
+                "clangd",
+                "clang-format",
                 "luacheck",
                 "shellcheck",
                 "shfmt",
@@ -11,6 +13,7 @@ return {
                 "typescript-language-server",
                 "css-lsp",
                 "texlab",
+                "intelephense",
             })
         end,
     },
@@ -154,15 +157,42 @@ return {
                     },
                 },
             },
-            setup = {},
+            setup = {
+                clangd = function(_, opts)
+                    opts.settings = {
+                        format = {
+                            enable = true,
+                            config = { fallbackStype = "none" },
+                        },
+                    }
+                end,
+            },
         },
     },
     -- NVIM-CMP
     {
-        "nvim-cmp",
+        "hrsh7th/nvim-cmp",
         dependencies = { "hrsh7th/cmp-emoji" },
         opts = function(_, opts)
             table.insert(opts.sources, { name = "emoji" })
+        end,
+    },
+
+    -- FILETYPE-SPECIFICS
+    {
+        "nvim-lua/plenary.nvim",
+        config = function()
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                pattern = "*.c",
+                callback = function()
+                    vim.lsp.buf.format({
+                        async = false,
+                        filter = function(client)
+                            return client.name ~= "clangd"
+                        end,
+                    })
+                end,
+            })
         end,
     },
 }

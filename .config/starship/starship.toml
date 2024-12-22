@@ -8,6 +8,7 @@ $all
 add_newline = true
 
 palette = 'kanagawa'
+command_timeout = 1000
 
 [palettes.kanagawa]
 color_fg0 = '#DCD7BA'

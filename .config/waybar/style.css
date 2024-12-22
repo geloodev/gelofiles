@@ -7,10 +7,11 @@
 
 window {
     color: #dcd7ba;
+    border-radius: 3px;
 }
 
 window#waybar {
-    background: transparent;
+    background: #16161D;
 }
 
 tooltip {
@@ -27,15 +28,16 @@ tooltip {
 #keyboard-state,
 #language,
 #network {
-    margin: 4px 4px 0px;
+    margin: 8px 4px;
     padding: 2px 12px;
-    border-radius: 2px;
+    border-radius: 3px;
     transition: none;
-    background: #1f1f28;
+    background: #1F1F28;
 }
 
 #workspaces {
-    border-bottom: 4px solid #957FB8;
+    margin-left: 8px;
+    border-bottom: 3px solid #957FB8;
     transition: 0.2s ease;
 }
 
@@ -44,16 +46,17 @@ tooltip {
     text-shadow: none;
     transition: 0.2s ease;
     padding: 2px 6px;
+    color: #2A2A37;
 }
 
 #workspaces button:hover {
     background: none;
-    color: #957FB8;
     animation: ws_hover 20s ease-in-out 1;
     transition: all 0.5s cubic-bezier(.55, -0.68, .48, 1.682);
 }
 
 #workspaces button.active {
+    color: #957FB8;
     color: #957FB8;
     transition: all 0.3s ease;
 }
@@ -63,21 +66,32 @@ tooltip {
 }
 
 #clock {
-    border-bottom: 4px solid #76946A;
+    border-bottom: 3px solid #76946A;
+    color: #76946A;
 }
 
 #pulseaudio {
-    border-bottom: 4px solid #C0A36E;
+    border-bottom: 3px solid #C0A36E;
+    color: #C0A36E;
 }
 
 #backlight {
-    border-bottom: 4px solid #7E9CD8;
+    border-bottom: 3px solid #7E9CD8;
+    color: #7E9CD8;
+}
+
+#keyboard-state {
+    border-bottom: 3px solid #957FB8;
+    color: #957FB8;
 }
 
 #language {
-    border-bottom: 4px solid #6A9589;
+    border-bottom: 3px solid #6A9589;
+    color: #6A9589;
 }
 
 #network {
-    border-bottom: 4px solid #C8C093;
+    margin-right: 8px;
+    border-bottom: 3px solid #C8C093;
+    color: #C8C093;
 }

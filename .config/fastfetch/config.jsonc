@@ -46,7 +46,7 @@
             "format": "{pretty-name}"
         },
         {
-            "key": "{$2}{#31}  lm",
+            "key": "{$2}{#31}  dm",
             "type": "lm",
             "format": "{service}"
         },
@@ -66,7 +66,7 @@
             "format": "{name}"
         },
         {
-            "key": "{$2}{#37}  colors",
+            "key": "{$2}{#37}  theme",
             "type": "colors",
             "symbol": "circle"
         },
