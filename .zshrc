@@ -35,6 +35,8 @@ export PATH=/home/geloodev/.local/bin:/home/geloodev/.cargo/bin:$PATH
 export STARSHIP_CONFIG=~/.config/starship/starship.toml
 export XDG_CONFIG_HOME=$HOME/.config
 #export JDTLS_JVM_ARGS="-javaagent:$HOME/.local/share/nvim/mason/share/lombok-nightly/lombok.jar"
+export PICO_SDK_PATH=~/pico/pico-sdk
+export PICO_TOOLCHAIN_PATH=/usr/bin/arm-none-eabi-gcc
 
 alias ls="eza -l -a --icons --group-directories-first"
 alias bat="bat --style=auto"
