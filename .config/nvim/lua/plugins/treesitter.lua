@@ -16,11 +16,14 @@ return {
                 "vim",
                 "lua",
             },
-            ignore_install = { "printf" },
+            ignore_install = { "printf", "markdown" },
             query_linter = {
                 enable = true,
                 use_virtual_text = true,
                 lint_events = { "BufWrite", "CursorHold" },
+            },
+            highlight = {
+                disable = { "markdown" },
             },
         },
     },

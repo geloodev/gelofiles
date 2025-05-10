@@ -22,7 +22,7 @@ color_red = '#C34043'
 color_yellow = '#C0A36E'
 
 [username]
-show_always = true
+show_always = false
 style_user = "bold fg:color_purple"
 style_root = "bold fg:color_purple"
 format = '[$user ]($style)'

@@ -15,6 +15,7 @@ return {
                 build = "make",
             },
             "nvim-telescope/telescope-file-browser.nvim",
+            "nvim-lua/plenary.nvim",
         },
         keys = {
             {
@@ -34,7 +35,7 @@ return {
                     local builtin = require("telescope.builtin")
                     builtin.live_grep()
                 end,
-                desc = "Searcoh for a string in your current working directory and get results live as you type, respects .gitignore",
+                desc = "Search for a string in your current working directory and get results live as you type, respects .gitignore",
             },
             {
                 "\\\\",
