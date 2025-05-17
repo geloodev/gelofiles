@@ -41,6 +41,7 @@ export PICO_TOOLCHAIN_PATH=/usr/bin/arm-none-eabi-gcc
 alias ls="eza -l -a --icons --group-directories-first"
 alias bat="bat --style=auto"
 alias clear="clear && fastfetch"
+alias gelofiles="nvim ~/gelofiles"
 
 eval "$(starship init zsh)"
 eval "$(mise activate zsh)"
