@@ -1,13 +1,14 @@
 return {
     -- HIGHLIGHT COLORS
     {
-        "echasnovski/mini.hipatterns",
+        "nvim-mini/mini.hipatterns",
         event = "BufReadPre",
         opts = {},
     },
     -- TELESCOPE
     {
         "nvim-telescope/telescope.nvim",
+        tag = "v0.2.0",
         priority = 1000,
         dependencies = {
             {

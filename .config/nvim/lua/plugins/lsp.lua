@@ -1,7 +1,7 @@
 return {
     {
         "mason-org/mason.nvim",
-        version = "^1.0.0",
+        version = "^2.0.0",
         opts = function(_, opts)
             vim.list_extend(opts.ensure_installed, {
                 "clangd",
@@ -19,10 +19,11 @@ return {
     },
     {
         "mason-org/mason-lspconfig.nvim",
-        version = "^1.0.0",
+        version = "^2.0.0",
     },
     {
         "neovim/nvim-lspconfig",
+        version = "^2.0.0",
         opts = {
             inlay_hints = { enabled = true },
             ---@type lspconfig.options,
